@@ -24,12 +24,13 @@ require 'opt.options'
 require 'plugin.telescope'
 require 'plugin.yanky'
 require 'plugin.fzf_lsp'
-require 'plugin.autoclose'
 require 'plugin.lsp_config'
 require 'plugin.treesitter'
 require 'plugin.dracula'
 require 'plugin.cmp'
 require 'plugin.auto_session'
 require 'plugin.gitsigns'
+require 'plugin.octo'
+require 'plugin.lualine'
 
-vim.cmd('colorscheme dracula-soft')
+vim.cmd('colorscheme dracula')

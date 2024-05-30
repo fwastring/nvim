@@ -1,6 +1,21 @@
 return {
+	-- {
+	-- 	"RRethy/base16-nvim",
+	-- },
 	{
 		"gbprod/yanky.nvim",
+	},
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' }
+	},
+	{
+		"pwntester/octo.nvim",
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+			'nvim-tree/nvim-web-devicons',
+		},
 	},
 	{
 		'lewis6991/gitsigns.nvim'
