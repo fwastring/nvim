@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.api.nvim_command('autocmd VimEnter * lua require("lualine").hide()')
+
 
 require("lazy").setup("plugins")
 

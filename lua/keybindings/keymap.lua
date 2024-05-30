@@ -1,5 +1,5 @@
--- Lualin
-local lualine_hidden = false
+-- Lualine
+local lualine_hidden = true
 
 function ToggleLualine()
   if lualine_hidden then
