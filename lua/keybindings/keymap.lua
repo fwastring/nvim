@@ -1,4 +1,16 @@
--- Yanky
+-- Lualin
+local lualine_hidden = false
+
+function ToggleLualine()
+  if lualine_hidden then
+    require('lualine').hide({unhide=true})
+  else
+    require('lualine').hide()
+  end
+  lualine_hidden = not lualine_hidden
+end
+
+vim.api.nvim_set_keymap('n', '<Space>l', ":lua ToggleLualine()<CR>", { noremap = true, silent = true })
 
 
 -- Leap

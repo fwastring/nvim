@@ -1,6 +1,7 @@
 require('lualine').setup {
   options = {
-    icons_enabled = true,
+    -- icons_enabled = true,
+    icons_enabled = false,
     -- theme = 'base16',
     theme = 'dracula',
     -- component_separators = { left = '', right = ''},
@@ -21,18 +22,12 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'buffers'},
-    -- lualine_b = {'branch', 'diff', 'diagnostics'},
-    -- lualine_c = {'buffers'},
-    -- lualine_x = {'filetype'},
-    -- lualine_y = {'progress'},
-    -- lualine_z = {'windows'},
-    -- lualine_a = {},
+    lualine_a = {},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {'buffers'}
   },
   inactive_sections = {
     lualine_a = {},
@@ -42,8 +37,22 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
-  winbar = {},
+  tabline = {
+    -- lualine_a = {'buffers'},
+    -- lualine_b = {},
+    -- lualine_c = {},
+    -- lualine_x = {},
+    -- lualine_y = {},
+    -- lualine_z = {}
+  },
+  winbar = {
+    -- lualine_a = {'buffers'},
+    -- lualine_b = {},
+    -- lualine_c = {},
+    -- lualine_x = {},
+    -- lualine_y = {},
+    -- lualine_z = {}
+  },
   inactive_winbar = {},
   extensions = {}
 }
