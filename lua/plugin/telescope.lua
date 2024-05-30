@@ -1,4 +1,5 @@
 local telescope = require('telescope')
+telescope.load_extension("yank_history")
 
 
 telescope.setup {
@@ -13,7 +14,8 @@ telescope.setup {
 	  },
 	pickers = {
 		find_files = {
-			hidden = true
+			hidden = true,
+			theme = "dropdown"
 		}
 	}
 }

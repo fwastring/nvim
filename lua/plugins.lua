@@ -1,6 +1,22 @@
 return {
 	{
-		'm4xshen/autoclose.nvim',
+		"gbprod/yanky.nvim",
+	},
+	{
+		'lewis6991/gitsigns.nvim'
+	},
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true
+		-- use opts = {} for passing setup options
+		-- this is equalent to setup({}) function
+	},
+	{
+		'rmagatti/auto-session',
+	},
+	{
+		"camspiers/snap",
 	},
 	{
 		"Mofiqul/dracula.nvim"
@@ -36,10 +52,6 @@ return {
 		'hrsh7th/nvim-cmp'
 	},
 	{
-		"folke/neoconf.nvim",
-		cmd = "Neoconf"
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {}
@@ -52,14 +64,16 @@ return {
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
 	},
-	{ "junegunn/fzf" },
+	{
+		"junegunn/fzf"
+	},
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
-          "molleweide/LuaSnip-snippets.nvim",
-		  "saadparwaiz1/cmp_luasnip"
+			"molleweide/LuaSnip-snippets.nvim",
+			"saadparwaiz1/cmp_luasnip"
 		},
 		build = "make install_jsregexp"
 	},
@@ -91,7 +105,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+			{ "<Space>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
 		}
 	},
 	{

@@ -22,11 +22,14 @@ require 'opt.options'
 
 -- Configuration of plugins
 require 'plugin.telescope'
+require 'plugin.yanky'
 require 'plugin.fzf_lsp'
 require 'plugin.autoclose'
 require 'plugin.lsp_config'
 require 'plugin.treesitter'
 require 'plugin.dracula'
 require 'plugin.cmp'
+require 'plugin.auto_session'
+require 'plugin.gitsigns'
 
 vim.cmd('colorscheme dracula-soft')

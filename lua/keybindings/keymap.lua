@@ -1,3 +1,7 @@
+-- Yanky
+
+
+-- Leap
 vim.keymap.set('n', 'z', '<Plug>(leap)')
 vim.keymap.set('n', 'Z', '<Plug>(leap-from-window)')
 vim.keymap.set({ 'x', 'o' }, 'z', '<Plug>(leap-forward)')
@@ -42,15 +46,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	desc = 'Hightlight selection on yank',
 	pattern = '*',
 	callback = function()
-		vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 }
+		vim.highlight.on_yank { higroup = 'IncSearch', timeout = 50 }
 	end,
 })
-
 -- Telescope bindings
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Space>f', builtin.find_files, {})
 vim.keymap.set('n', '<Space>o', builtin.live_grep, {})
 vim.keymap.set('n', '<Space>b', builtin.buffers, {})
+vim.keymap.set('n', '<Space>p', builtin.commands, {})
+vim.keymap.set('n', '<Space>y', ':Telescope yank_history<CR>', {})
+vim.keymap.set('n', '<Space>gc', builtin.git_commits, {})
+vim.keymap.set('n', '<Space>gs', builtin.git_status, {})
+vim.keymap.set('n', '<Space>gf', builtin.git_files, {})
+vim.keymap.set('n', '<Space>7', builtin.current_buffer_fuzzy_find, {})
+
+
+-- Bindings for save and quit
+vim.api.nvim_set_keymap('n', '<Space>w', ':w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Space>q', ':q<CR>', {})
+
 
 
 -- Bindings for save and quit
