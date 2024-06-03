@@ -10,7 +10,7 @@ function ToggleLualine()
   lualine_hidden = not lualine_hidden
 end
 
-vim.api.nvim_set_keymap('n', '<Space>l', ":lua ToggleLualine()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Space>b', ":lua ToggleLualine()<CR>", { noremap = true, silent = true })
 
 
 -- Leap
@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Space>f', builtin.find_files, {})
 vim.keymap.set('n', '<Space>o', builtin.live_grep, {})
-vim.keymap.set('n', '<Space>b', builtin.buffers, {})
+-- vim.keymap.set('n', '<Space>b', builtin.buffers, {})
 -- vim.keymap.set('n', '<Space>p', builtin.commands, {})
 
 vim.keymap.set('n', '<Space>y', ':Telescope yank_history<CR>', {})
