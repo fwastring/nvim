@@ -1,3 +1,6 @@
+-- Settings
+require 'opt.options'
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -13,14 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.api.nvim_command('autocmd VimEnter * lua require("lualine").hide()')
 
-
 require("lazy").setup("plugins")
 
 -- Keybindsings
 require 'keybindings.keymap'
-
--- Settings
-require 'opt.options'
 
 -- Configuration of plugins
 require 'plugin.telescope'
@@ -32,7 +31,6 @@ require 'plugin.dracula'
 require 'plugin.cmp'
 require 'plugin.auto_session'
 require 'plugin.gitsigns'
-require 'plugin.octo'
 require 'plugin.lualine'
 
 vim.cmd('colorscheme dracula')

@@ -16,6 +16,11 @@ telescope.setup {
 		find_files = {
 			hidden = true,
 			theme = "dropdown"
+		},
+		live_grep = {
+			additional_args = function(_)
+				return { "--hidden" }
+			end
 		}
 	}
 }
