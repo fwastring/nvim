@@ -47,11 +47,6 @@ vim.api.nvim_set_keymap('n', '<C-l>', ':wincmd l<CR>', { silent = true })
 
 vim.api.nvim_set_keymap('n', '<Space>c', ':bd<CR>', { silent = true })
 
--- Sniprun
-vim.api.nvim_set_keymap('v', 'f', '<Plug>SnipRun', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>SnipRunOperator', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ff', '<Plug>SnipRun', { silent = true })
-
 -- Highlight yanked
 vim.api.nvim_create_autocmd('TextYankPost', {
 	group = vim.api.nvim_create_augroup('highlight_yank', {}),
