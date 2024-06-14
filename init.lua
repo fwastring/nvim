@@ -33,4 +33,4 @@ require 'plugin.auto_session'
 require 'plugin.gitsigns'
 require 'plugin.lualine'
 
-vim.cmd('colorscheme dracula')
+vim.cmd('colorscheme catppuccin-macchiato')
