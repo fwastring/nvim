@@ -32,3 +32,4 @@ require'lspconfig'.volar.setup{
 }
 require'lspconfig'.vuels.setup{}
 require'lspconfig'.jsonls.setup{}
+require'lspconfig'.gopls.setup{}

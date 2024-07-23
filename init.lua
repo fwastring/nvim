@@ -14,7 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.api.nvim_command('autocmd VimEnter * lua require("lualine").hide()')
+-- vim.api.nvim_command('autocmd VimEnter * lua require("lualine").hide()')
 
 require("lazy").setup("plugins")
 
@@ -33,4 +33,6 @@ require 'plugin.auto_session'
 require 'plugin.gitsigns'
 require 'plugin.lualine'
 
-vim.cmd('colorscheme catppuccin-macchiato')
+vim.o.termguicolors = true
+-- vim.cmd('colorscheme catppuccin-mocha')
+vim.cmd('colorscheme base16-catppuccin-mocha')

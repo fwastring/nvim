@@ -3,8 +3,8 @@ require('lualine').setup {
   options = {
     -- icons_enabled = true,
     icons_enabled = false,
-    -- theme = 'base16',
-    theme = 'dracula',
+    theme = 'base16',
+    -- theme = 'catppuccin-mocha',
     -- component_separators = { left = '', right = ''},
     -- section_separators = { left = '', right = ''},
     component_separators = { left = '', right = ''},
