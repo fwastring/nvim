@@ -6,6 +6,8 @@ Feel free to use this, it is however tailored for me.
 
 ![Screenshot of the editor](./assets/screen.png)
 
+## LSP
+
 I recommend installing these LSPs for the lsp-zero config to work :)
 
 ```nix
