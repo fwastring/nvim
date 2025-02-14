@@ -3,6 +3,9 @@ return {
 		'mhartington/formatter.nvim'
 	},
 	{
+		'ggandor/leap.nvim'
+	},
+	{
 		'famiu/bufdelete.nvim'
 	},
 	{

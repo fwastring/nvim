@@ -14,10 +14,10 @@ parser_config.csharp = {
 }
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "haskell", "python", "bash", "clojure",  "nix", "dockerfile", "csharp", "markdown", "json", "vue", "typescript" },
+  ensure_installed = { "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash",  "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
   sync_install = false,
   auto_install = true,
-  ignore_install = { "javascript" },
+  ignore_install = { "vue" },
 
   highlight = {
     enable = true,

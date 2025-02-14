@@ -23,10 +23,10 @@ vim.api.nvim_set_keymap('n', 'n', "nzzzv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'N', "Nzzzv", { noremap = true, silent = true })
 
 -- Leap
--- vim.keymap.set('n', 'z', '<Plug>(leap)')
--- vim.keymap.set('n', 'Z', '<Plug>(leap-from-window)')
--- vim.keymap.set({ 'x', 'o' }, 'z', '<Plug>(leap-forward)')
--- vim.keymap.set({ 'x', 'o' }, 'Z', '<Plug>(leap-backward)')
+vim.keymap.set('n', 'z', '<Plug>(leap)')
+vim.keymap.set('n', 'Z', '<Plug>(leap-from-window)')
+vim.keymap.set({ 'x', 'o' }, 'z', '<Plug>(leap-forward)')
+vim.keymap.set({ 'x', 'o' }, 'Z', '<Plug>(leap-backward)')
 
 -- Substitute
 vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
