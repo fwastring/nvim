@@ -11,7 +11,7 @@ require 'lspconfig'.bashls.setup {}
 require 'lspconfig'.dockerls.setup {}
 require 'lspconfig'.docker_compose_language_service.setup {}
 require 'lspconfig'.ansiblels.setup {}
-require 'lspconfig'.tsserver.setup {}
+-- require 'lspconfig'.ts_ls.setup {}
 require 'lspconfig'.yamlls.setup {}
 require 'lspconfig'.lua_ls.setup {
 	settings = {
@@ -24,9 +24,13 @@ require 'lspconfig'.lua_ls.setup {
 }
 -- require'lspconfig'.vls.setup{}
 require'lspconfig'.volar.setup{
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+      init_options = {
+      vue = {
+        hybridMode = false,
+      },
+    },
 }
--- require'lspconfig'.vuels.setup{}
 require'lspconfig'.jsonls.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.jdtls.setup{}
