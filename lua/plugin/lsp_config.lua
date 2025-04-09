@@ -4,7 +4,26 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({buffer = bufnr })
 end)
-require 'lspconfig'.nil_ls.setup {}
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.nix",
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
+require 'lspconfig'.nil_ls.setup {
+            capabilities = capabilities,
+            settings = {
+                nil_ls = {
+                    formatter = { command = {"nixpkgs-fmt"}},
+                },
+            },
+        }
+
+        require 'lspconfig'.nixd.setup {
+            capabilities = capabilities,
+        }
 require 'lspconfig'.marksman.setup {}
 require 'lspconfig'.pylsp.setup {}
 require 'lspconfig'.bashls.setup {}
