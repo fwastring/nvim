@@ -10,6 +10,9 @@ function ToggleLualine()
   lualine_hidden = not lualine_hidden
 end
 
+-- kubectl
+-- vim.api.nvim_set_keymap('n', '<Space>k', ':lua require("kubectl").toggle({ })<CR>', { noremap = true, silent = true })
+
 -- vim.api.nvim_set_keymap('n', '<Space>b', ":lua ToggleLualine()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>1', "1gt", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Space>2', "2gt", { noremap = true, silent = true })

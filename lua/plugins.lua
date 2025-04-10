@@ -1,9 +1,21 @@
 return {
 	{
+		'MunifTanjim/prettier.nvim'
+	},
+	{
+		"ramilito/kubectl.nvim",
+		config = function()
+		  require("kubectl").setup()
+		end,
+	  },
+	{
+		'jose-elias-alvarez/null-ls.nvim'
+	},
+	{
 		'mhartington/formatter.nvim'
 	},
 	{
-		'ggandor/leap.nvim'
+		"neovim/nvim-lspconfig",
 	},
 	{
 		'famiu/bufdelete.nvim'
@@ -59,9 +71,6 @@ return {
 	},
 	{
 		'gfanto/fzf-lsp.nvim',
-	},
-	{
-		'neovim/nvim-lspconfig'
 	},
 	{
 		'hrsh7th/cmp-nvim-lsp'

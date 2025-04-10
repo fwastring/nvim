@@ -29,6 +29,26 @@ require 'plugin.auto_session'
 require("scope").setup({})
 require 'plugin.lualine'
 require 'plugin.formatter'
+local prettier = require("prettier")
+
+prettier.setup({
+  bin = 'prettierd', -- or `'prettierd'` (v0.23.3+)
+  filetypes = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+    "vue",
+  },
+})
 
 vim.o.termguicolors = true
 vim.cmd('colorscheme catppuccin-mocha')
