@@ -12,11 +12,11 @@ require('lualine').setup {
     always_divide_middle = true,
 	always_show_tabline = true,
     globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
+    -- refresh = {
+    --   statusline = 1000,
+    --   tabline = 1000,
+    --   winbar = 1000,
+    -- }
   },
   sections = {
     lualine_a = {},
