@@ -40,8 +40,14 @@ require 'lspconfig'.lua_ls.setup {
         }
     }
 }
--- require'lspconfig'.vls.setup{}
-require'lspconfig'.volar.setup{}
+require'lspconfig'.volar.setup{
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+      init_options = {
+      vue = {
+        hybridMode = false,
+      },
+    },
+}
 require'lspconfig'.jsonls.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.jdtls.setup{}

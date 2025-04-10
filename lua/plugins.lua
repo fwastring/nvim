@@ -3,7 +3,7 @@ return {
 		'mhartington/formatter.nvim'
 	},
 	{
-		'ggandor/leap.nvim'
+		"neovim/nvim-lspconfig",
 	},
 	{
 		'famiu/bufdelete.nvim'
@@ -59,9 +59,6 @@ return {
 	},
 	{
 		'gfanto/fzf-lsp.nvim',
-	},
-	{
-		'neovim/nvim-lspconfig'
 	},
 	{
 		'hrsh7th/cmp-nvim-lsp'
