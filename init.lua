@@ -50,5 +50,36 @@ prettier.setup({
   },
 })
 
+vim.lsp.enable('volar')
+
+vim.lsp.config('volar', {
+  -- add filetypes for typescript, javascript and vue
+  cmd = { "vue-language-server", "--stdio" },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  init_options = {
+    vue = {
+      -- disable hybrid mode
+      hybridMode = false,
+    },
+	  typescript = {
+		tsdk = "/home/fw/dev/ifacts-ops/frontend/node_modules/typescript/lib"
+	  }
+  },
+  root_markers = { "package.json" }
+})
+
+vim.lsp.config['ts_ls'] = {}
+
+
+vim.lsp.enable('omnisharp')
+vim.lsp.config('omnisharp', {
+	cmd = { "OmniSharp", "-z", "--hostPID", "12345", "DotNet:enablePackageRestore=false", "--encoding", "utf-8", "--languageserver" }
+})
+
+vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<cr>")
+
 vim.o.termguicolors = true
-vim.cmd('colorscheme catppuccin-mocha')
+vim.cmd('colorscheme catppuccin-latte')
