@@ -3,9 +3,6 @@ return {
 		'MunifTanjim/prettier.nvim'
 	},
 	{
-		'jose-elias-alvarez/null-ls.nvim'
-	},
-	{
 		'mhartington/formatter.nvim'
 	},
 	{
