@@ -25,6 +25,13 @@ vim.api.nvim_set_keymap('n', '<Space>8', "8gt", { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', 'n', "nzzzv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'N', "Nzzzv", { noremap = true, silent = true })
 
+-- Diagnostics
+vim.keymap.set('n', 'go', vim.diagnostic.open_float)
+vim.keymap.set('n', 'gd', "<C-]><CR>", { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<cr>")
+
 -- Leap
 vim.keymap.set('n', 'z', '<Plug>(leap)')
 vim.keymap.set('n', 'Z', '<Plug>(leap-from-window)')
