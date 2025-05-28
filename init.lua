@@ -29,6 +29,7 @@ require 'plugin.auto_session'
 require("scope").setup({})
 require 'plugin.lualine'
 require 'plugin.formatter'
+require 'plugin.plantuml'
 local prettier = require("prettier")
 
 prettier.setup({
@@ -149,6 +150,7 @@ vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
 vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<cr>")
+
 
 vim.o.termguicolors = true
 vim.cmd('colorscheme catppuccin-latte')
