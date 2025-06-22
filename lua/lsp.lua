@@ -15,6 +15,7 @@ vim.lsp.enable('dockerls')
 vim.lsp.enable('docker_compose_language_service')
 vim.lsp.enable('ltex')
 vim.lsp.enable('ts_ls')
+vim.lsp.enable('marksman')
 
 vim.lsp.config('ltex', {
   cmd = { "ltex-ls" },
@@ -24,6 +25,21 @@ vim.lsp.config('ltex', {
       enabled = { "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd", "context", "html", "xhtml", "mail", "plaintext" }
     }
   }
+})
+
+vim.lsp.config('bashls', {
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "bash", "sh" }
+})
+
+vim.lsp.config('tinymist', {
+  cmd = { "tinymist" },
+  filetypes = { "typst" }
+})
+
+vim.lsp.config('marksman', {
+  cmd = { "marksman", "server" },
+  filetypes = { "markdown", "markdown.mdx" }
 })
 
 vim.lsp.config('dockerls', {

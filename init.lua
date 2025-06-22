@@ -26,6 +26,7 @@ require 'plugin.lsp_config'
 require 'plugin.treesitter'
 require 'plugin.cmp'
 require 'plugin.auto_session'
+-- require 'plugin.typst'
 require("scope").setup({})
 require 'plugin.lualine'
 require 'plugin.formatter'
