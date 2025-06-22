@@ -30,6 +30,7 @@ require 'plugin.auto_session'
 require("scope").setup({})
 require 'plugin.lualine'
 require 'plugin.formatter'
+require 'plugin.plantuml'
 local prettier = require("prettier")
 
 prettier.setup({
@@ -52,6 +53,7 @@ prettier.setup({
 })
 
 require 'lsp'
+
 
 
 

@@ -6,6 +6,11 @@ return {
 	--   opts = {}, -- lazy.nvim will implicitly calls `setup {}`
 	-- },
 	{
+	  'https://gitlab.com/itaranto/plantuml.nvim',
+	  version = '*',
+	  config = function() require('plantuml').setup() end,
+	},
+	{
 		'MunifTanjim/prettier.nvim'
 	},
 	{
