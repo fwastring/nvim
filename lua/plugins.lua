@@ -10,6 +10,7 @@ return {
 	  version = '*',
 	  config = function() require('plantuml').setup() end,
 	},
+	{ "qvalentin/helm-ls.nvim", ft = "helm" },
 	{
 		'MunifTanjim/prettier.nvim'
 	},

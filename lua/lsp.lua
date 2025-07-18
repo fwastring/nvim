@@ -1,5 +1,5 @@
 
-vim.lsp.enable('volar')
+vim.lsp.enable('vue_ls')
 vim.lsp.enable('omnisharp')
 vim.lsp.enable('gopls')
 vim.lsp.enable('nixd')
@@ -16,6 +16,13 @@ vim.lsp.enable('docker_compose_language_service')
 vim.lsp.enable('ltex')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('marksman')
+vim.lsp.enable('helm_ls')
+
+vim.lsp.config('helm_ls', {
+  cmd = { "helm_ls", "serve" },
+  filetypes = { "helm" },
+  single_file_support = true
+})
 
 vim.lsp.config('ltex', {
   cmd = { "ltex-ls" },
@@ -99,7 +106,7 @@ vim.lsp.config('yamlls', {
   filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yml" },
 })
 
-vim.lsp.config('volar', {
+vim.lsp.config('vue_lls', {
   -- add filetypes for typescript, javascript and vue
   cmd = { "vue-language-server", "--stdio" },
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
