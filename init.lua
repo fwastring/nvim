@@ -1,11 +1,11 @@
 vim.pack.add({
-	{ src = 'https://github.com/akinsho/bufferline.nvim', version = "v4.9.1" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",  version = 'main' },
+	{ src = 'https://github.com/akinsho/bufferline.nvim',                version = "v4.9.1" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = 'main' },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/qvalentin/helm-ls.nvim", ft = "helm" },
+	{ src = "https://github.com/qvalentin/helm-ls.nvim",                 ft = "helm" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/catppuccin/nvim" },
 	{ src = 'https://github.com/rmagatti/auto-session' },
@@ -15,8 +15,6 @@ vim.pack.add({
 	{ src = 'https://github.com/numToStr/Comment.nvim' },
 	{
 		src = 'https://github.com/windwp/nvim-autopairs',
-		event = "InsertEnter",
-		config = true
 	},
 })
 
@@ -31,6 +29,7 @@ vim.lsp.enable({
 	'tailwindcss',
 	'clangd',
 	'hls',
+	'jsonls',
 	'rust_analyzer',
 	'bashls',
 	'dockerls',
@@ -39,37 +38,47 @@ vim.lsp.enable({
 	'ts_ls',
 	'marksman',
 	'helm_ls',
+	'marksman',
+})
+
+vim.lsp.config("jsonls", {
+	cmd = { "vscode-json-languageserver", "--stdio" },
+	filetypes = { "json", "jsonc" },
+	root_markers = { ".git" },
+	init_options = {
+		provideFormatter = true
+	}
 })
 
 vim.lsp.config("vtsls", {
-				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-				settings = {
-					vtsls = { tsserver = { globalPlugins = {} } },
-					typescript = {
-						inlayHints = {
-							parameterNames = { enabled = "literals" },
-							parameterTypes = { enabled = true },
-							variableTypes = { enabled = true },
-							propertyDeclarationTypes = { enabled = true },
-							functionLikeReturnTypes = { enabled = true },
-							enumMemberValues = { enabled = true },
-						},
-					},
-				},
-				before_init = function(_, config)
-					table.insert(config.settings.vtsls.tsserver.globalPlugins, {
-						name = "@vue/typescript-plugin",
-						location = "/run/current-system/sw/bin/vue-language-server",
-						languages = { "vue" },
-						configNamespace = "typescript",
-						enableForWorkspaceTypeScriptVersions = true,
-					})
-				end,
-				on_attach = function(client)
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
-				end,
-			})
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+	settings = {
+		vtsls = { tsserver = { globalPlugins = {} } },
+		typescript = {
+			inlayHints = {
+				parameterNames = { enabled = "literals" },
+				parameterTypes = { enabled = true },
+				variableTypes = { enabled = true },
+				propertyDeclarationTypes = { enabled = true },
+				functionLikeReturnTypes = { enabled = true },
+				enumMemberValues = { enabled = true },
+			},
+		},
+	},
+	before_init = function(_, config)
+		table.insert(config.settings.vtsls.tsserver.globalPlugins, {
+			name = "@vue/typescript-plugin",
+			location = "/run/current-system/sw/bin/vue-language-server",
+			languages = { "vue" },
+			configNamespace = "typescript",
+			enableForWorkspaceTypeScriptVersions = true,
+		})
+	end,
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end,
+})
 
 
 vim.o.number = true
@@ -88,25 +97,25 @@ vim.o.cmdheight = 0
 
 -- Configuration of plugins
 require("catppuccin").setup({
-    default_integrations = false,
+	default_integrations = false,
 })
 local bufferline = require("bufferline")
 local mocha = require("catppuccin.palettes").get_palette "latte"
 bufferline.setup {
-    highlights = require("catppuccin.groups.integrations.bufferline").get {
-        styles = { "italic", "bold" },
-        custom = {
-            all = {
-                fill = { bg = "#000000" },
-            },
-            mocha = {
-                background = { fg = mocha.text },
-            },
-            latte = {
-                background = { fg = "#000000" },
-            },
-        },
-    },
+	highlights = require("catppuccin.groups.integrations.bufferline").get {
+		styles = { "italic", "bold" },
+		custom = {
+			all = {
+				fill = { bg = "#000000" },
+			},
+			mocha = {
+				background = { fg = mocha.text },
+			},
+			latte = {
+				background = { fg = "#000000" },
+			},
+		},
+	},
 }
 require("auto-session").setup {
 	log_level = "error",
@@ -119,16 +128,16 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.csharp = {
 	install_info = {
 		url = "https://github.com/tree-sitter/tree-sitter-c-sharp", -- local path or git repo
-		files = { "src/parser.c" },                             -- note that some parsers also require src/scanner.c or src/scanner.cc
-		branch = "master",                                      -- default branch in case of git repo if different from master
-		generate_requires_npm = false,                          -- if stand-alone parser without npm dependencies
-		requires_generate_from_grammar = false,                 -- if folder contains pre-generated src/parser.c
+		files = { "src/parser.c" },                           -- note that some parsers also require src/scanner.c or src/scanner.cc
+		branch = "master",                                    -- default branch in case of git repo if different from master
+		generate_requires_npm = false,                        -- if stand-alone parser without npm dependencies
+		requires_generate_from_grammar = false,               -- if folder contains pre-generated src/parser.c
 	},
-	filetype = "cs",                                            -- if filetype does not match the parser name
+	filetype = "cs",                                          -- if filetype does not match the parser name
 }
 
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = { "helm",  "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
+	ensure_installed = { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
 	sync_install = false,
 	auto_install = true,
 	ignore_install = { "vue" },
@@ -178,14 +187,9 @@ cmp.setup({
 })
 
 -- If you want insert `(` after select function or method item
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on(
-	'confirm_done',
-	cmp_autopairs.on_confirm_done()
-)
 
-require "mini.pick".setup()
-
+require("nvim-autopairs").setup()
+require("mini.pick").setup()
 require('substitute').setup()
 
 -- Sub
