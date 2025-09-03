@@ -13,6 +13,7 @@ vim.pack.add({
 	{ src = 'https://github.com/hrsh7th/nvim-cmp' },
 	{ src = "https://github.com/gbprod/substitute.nvim" },
 	{ src = 'https://github.com/numToStr/Comment.nvim' },
+	{ src = 'https://github.com/folke/which-key.nvim' },
 	{
 		src = 'https://github.com/windwp/nvim-autopairs',
 	},
@@ -39,6 +40,8 @@ vim.lsp.enable({
 	'marksman',
 	'helm_ls',
 	'marksman',
+	'tinymist',
+	'nginx_language_server',
 })
 
 vim.lsp.config("jsonls", {
@@ -101,60 +104,60 @@ require("catppuccin").setup({
 })
 local bufferline = require("bufferline")
 local mocha = require("catppuccin.palettes").get_palette "latte"
-bufferline.setup {
-	highlights = require("catppuccin.groups.integrations.bufferline").get {
-		styles = { "italic", "bold" },
-		custom = {
-			all = {
-				fill = { bg = "#000000" },
-			},
-			mocha = {
-				background = { fg = mocha.text },
-			},
-			latte = {
-				background = { fg = "#000000" },
-			},
-		},
-	},
-}
+-- bufferline.setup {
+-- 	highlights = require("catppuccin.groups.integrations.bufferline").get {
+-- 		styles = { "italic", "bold" },
+-- 		custom = {
+-- 			all = {
+-- 				fill = { bg = "#000000" },
+-- 			},
+-- 			mocha = {
+-- 				background = { fg = mocha.text },
+-- 			},
+-- 			latte = {
+-- 				background = { fg = "#000000" },
+-- 			},
+-- 		},
+-- 	},
+-- }
 require("auto-session").setup {
 	log_level = "error",
 	auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 }
 require 'nvim-treesitter'.setup()
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+--
+-- parser_config.csharp = {
+-- 	install_info = {
+-- 		url = "https://github.com/tree-sitter/tree-sitter-c-sharp", -- local path or git repo
+-- 		files = { "src/parser.c" },                           -- note that some parsers also require src/scanner.c or src/scanner.cc
+-- 		branch = "master",                                    -- default branch in case of git repo if different from master
+-- 		generate_requires_npm = false,                        -- if stand-alone parser without npm dependencies
+-- 		requires_generate_from_grammar = false,               -- if folder contains pre-generated src/parser.c
+-- 	},
+-- 	filetype = "cs",                                          -- if filetype does not match the parser name
+-- }
 
-parser_config.csharp = {
-	install_info = {
-		url = "https://github.com/tree-sitter/tree-sitter-c-sharp", -- local path or git repo
-		files = { "src/parser.c" },                           -- note that some parsers also require src/scanner.c or src/scanner.cc
-		branch = "master",                                    -- default branch in case of git repo if different from master
-		generate_requires_npm = false,                        -- if stand-alone parser without npm dependencies
-		requires_generate_from_grammar = false,               -- if folder contains pre-generated src/parser.c
-	},
-	filetype = "cs",                                          -- if filetype does not match the parser name
-}
-
-require 'nvim-treesitter.configs'.setup {
-	ensure_installed = { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
-	sync_install = false,
-	auto_install = true,
-	ignore_install = { "vue" },
-
-	highlight = {
-		enable = true,
-
-		disable = function(lang, buf)
-			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
-		additional_vim_regex_highlighting = false,
-	},
-}
+-- require 'nvim-treesitter.configs'.setup {
+-- 	ensure_installed = { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
+-- 	sync_install = false,
+-- 	auto_install = true,
+-- 	ignore_install = { "vue" },
+--
+-- 	highlight = {
+-- 		enable = true,
+--
+-- 		disable = function(lang, buf)
+-- 			local max_filesize = 100 * 1024 -- 100 KB
+-- 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+-- 			if ok and stats and stats.size > max_filesize then
+-- 				return true
+-- 			end
+-- 		end,
+-- 		additional_vim_regex_highlighting = false,
+-- 	},
+-- }
 local cmp = require('cmp')
 
 cmp.setup({
