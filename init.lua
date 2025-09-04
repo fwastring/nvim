@@ -3,7 +3,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = 'main' },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/echasnovski/mini.pick" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/qvalentin/helm-ls.nvim",                 ft = "helm" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
@@ -192,8 +193,26 @@ cmp.setup({
 -- If you want insert `(` after select function or method item
 
 require("nvim-autopairs").setup()
-require("mini.pick").setup()
 require('substitute').setup()
+
+require('telescope').setup({
+	pickers = {
+		live_grep = {
+			file_ignore_patterns = { 'node_modules', '.git/', '.venv' },
+			additional_args = function(_)
+				return { "--hidden" }
+			end
+		},
+		find_files = {
+			file_ignore_patterns = { 'node_modules', '.git/', '.venv' },
+			hidden = true
+		}
+
+	},
+})
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>o', builtin.live_grep, { desc = 'Telescope live grep' })
 
 -- Sub
 vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
@@ -234,11 +253,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank { higroup = 'IncSearch', timeout = 50 }
 	end,
 })
-
--- Pick
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
-vim.keymap.set('n', '<leader>o', ":Pick grep_live<CR>")
 
 
 -- Bindings for save and quit
