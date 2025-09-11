@@ -1,14 +1,14 @@
 vim.pack.add({
-	{ src = 'https://github.com/akinsho/bufferline.nvim',                version = "v4.9.1" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = 'main' },
+	{ src = 'https://github.com/akinsho/bufferline.nvim',                name = "bufferline",      version = "v4.9.1" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        name = "nvim-treesitter", version = 'main' },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/qvalentin/helm-ls.nvim",                 ft = "helm" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
-	{ src = "https://github.com/catppuccin/nvim" },
+	{ src = "https://github.com/catppuccin/nvim",                        name = "catppuccin" },
 	{ src = 'https://github.com/rmagatti/auto-session' },
 	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp' },
 	{ src = 'https://github.com/hrsh7th/nvim-cmp' },
@@ -43,6 +43,12 @@ vim.lsp.enable({
 	'marksman',
 	'tinymist',
 	'nginx_language_server',
+})
+
+vim.lsp.config("nixd", {
+	cmd = { "nixd" },
+	filetypes = { "nix" },
+	root_markers = { "flake.nix", ".git" },
 })
 
 vim.lsp.config("jsonls", {
@@ -121,13 +127,14 @@ local mocha = require("catppuccin.palettes").get_palette "latte"
 -- 		},
 -- 	},
 -- }
+require("oil").setup()
 require("auto-session").setup {
 	log_level = "error",
 	auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 }
-require 'nvim-treesitter'.setup()
-
--- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- require 'nvim-treesitter'.setup()
+--
+-- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 --
 -- parser_config.csharp = {
 -- 	install_info = {
@@ -139,7 +146,7 @@ require 'nvim-treesitter'.setup()
 -- 	},
 -- 	filetype = "cs",                                          -- if filetype does not match the parser name
 -- }
-
+--
 -- require 'nvim-treesitter.configs'.setup {
 -- 	ensure_installed = { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
 -- 	sync_install = false,
@@ -211,6 +218,7 @@ require('telescope').setup({
 	},
 })
 local builtin = require('telescope.builtin')
+
 vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>o', builtin.live_grep, { desc = 'Telescope live grep' })
 
