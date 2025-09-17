@@ -1,5 +1,5 @@
 vim.pack.add({
-	{ src = 'https://github.com/akinsho/bufferline.nvim',                name = "bufferline",      version = "v4.9.1" },
+	{ src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        name = "nvim-treesitter", version = 'main' },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
@@ -8,41 +8,35 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/qvalentin/helm-ls.nvim",                 ft = "helm" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
-	{ src = "https://github.com/catppuccin/nvim",                        name = "catppuccin" },
+	{ src = "https://github.com/catppuccin/nvim",                        priority = 1000,          name = "catppuccin" },
+	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
 	{ src = 'https://github.com/rmagatti/auto-session' },
 	{ src = 'https://github.com/hrsh7th/cmp-nvim-lsp' },
 	{ src = 'https://github.com/hrsh7th/nvim-cmp' },
 	{ src = "https://github.com/gbprod/substitute.nvim" },
 	{ src = 'https://github.com/numToStr/Comment.nvim' },
 	{ src = 'https://github.com/folke/which-key.nvim' },
-	{
-		src = 'https://github.com/windwp/nvim-autopairs',
-	},
+	{ src = 'https://github.com/windwp/nvim-autopairs' },
+	{ src = 'https://github.com/kylechui/nvim-surround' },
 })
 
 vim.lsp.enable({
-	'vtsls',
 	'omnisharp',
 	'gopls',
 	'nixd',
 	'lua_ls',
 	'yamlls',
 	'jsonls',
-	'tailwindcss',
-	'clangd',
 	'hls',
-	'jsonls',
-	'rust_analyzer',
 	'bashls',
 	'dockerls',
-	'docker_compose_language_service',
 	'ltex',
 	'ts_ls',
-	'marksman',
 	'helm_ls',
 	'marksman',
 	'tinymist',
 	'nginx_language_server',
+	'docker_compose_language_service',
 })
 
 vim.lsp.config("nixd", {
@@ -102,70 +96,89 @@ vim.o.clipboard = "unnamedplus"
 vim.opt.wrap = true
 vim.opt.shiftwidth = 4
 vim.o.termguicolors = true
-vim.o.cmdheight = 0
 
 
 -- Configuration of plugins
 require("catppuccin").setup({
-	default_integrations = false,
+	-- This line is correct, uncomment it if you want to set the global flavor
+	flavour = "latte",
+	background = { -- :h background
+		light = "latte",
+	},
 })
-local bufferline = require("bufferline")
-local mocha = require("catppuccin.palettes").get_palette "latte"
--- bufferline.setup {
--- 	highlights = require("catppuccin.groups.integrations.bufferline").get {
--- 		styles = { "italic", "bold" },
--- 		custom = {
--- 			all = {
--- 				fill = { bg = "#000000" },
--- 			},
--- 			mocha = {
--- 				background = { fg = mocha.text },
--- 			},
--- 			latte = {
--- 				background = { fg = "#000000" },
--- 			},
--- 		},
--- 	},
--- }
+
+require('lualine').setup {
+	options = {
+		icons_enabled = true,
+		theme = 'auto',
+		component_separators = { left = '', right = '' },
+		section_separators = { left = '', right = '' },
+		disabled_filetypes = {
+			statusline = {},
+			winbar = {},
+		},
+		ignore_focus = {},
+		always_divide_middle = true,
+		always_show_tabline = true,
+		globalstatus = false,
+		refresh = {
+			statusline = 1000,
+			tabline = 1000,
+			winbar = 1000,
+			refresh_time = 16, -- ~60fps
+			events = {
+				'WinEnter',
+				'BufEnter',
+				'BufWritePost',
+				'SessionLoadPost',
+				'FileChangedShellPost',
+				'VimResized',
+				'Filetype',
+				'CursorMoved',
+				'CursorMovedI',
+				'ModeChanged',
+			},
+		}
+	},
+	sections = {
+		-- lualine_a = {'mode'},
+		-- lualine_b = {'branch', 'diff', 'diagnostics'},
+		-- lualine_c = {'filename'},
+		-- lualine_x = {'encoding', 'fileformat', 'filetype'},
+		-- lualine_y = {'progress'},
+		-- lualine_z = {'location'}
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { 'filename' },
+		lualine_x = { 'location' },
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline = {
+		lualine_a = { 'mode' },
+		lualine_b = { 'branch', 'diagnostics' },
+		lualine_c = { 'filename' },
+		lualine_x = { 'filetype' },
+		lualine_y = { 'buffers' },
+		lualine_z = {  }
+	},
+	winbar = {},
+	inactive_winbar = {},
+	extensions = {}
+}
+
+require("nvim-surround").setup({})
 require("oil").setup()
 require("auto-session").setup {
 	log_level = "error",
 	auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 }
--- require 'nvim-treesitter'.setup()
---
--- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
---
--- parser_config.csharp = {
--- 	install_info = {
--- 		url = "https://github.com/tree-sitter/tree-sitter-c-sharp", -- local path or git repo
--- 		files = { "src/parser.c" },                           -- note that some parsers also require src/scanner.c or src/scanner.cc
--- 		branch = "master",                                    -- default branch in case of git repo if different from master
--- 		generate_requires_npm = false,                        -- if stand-alone parser without npm dependencies
--- 		requires_generate_from_grammar = false,               -- if folder contains pre-generated src/parser.c
--- 	},
--- 	filetype = "cs",                                          -- if filetype does not match the parser name
--- }
---
--- require 'nvim-treesitter.configs'.setup {
--- 	ensure_installed = { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" },
--- 	sync_install = false,
--- 	auto_install = true,
--- 	ignore_install = { "vue" },
---
--- 	highlight = {
--- 		enable = true,
---
--- 		disable = function(lang, buf)
--- 			local max_filesize = 100 * 1024 -- 100 KB
--- 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
--- 			if ok and stats and stats.size > max_filesize then
--- 				return true
--- 			end
--- 		end,
--- 		additional_vim_regex_highlighting = false,
--- 	},
--- }
+require 'nvim-treesitter'.setup()
+
+require 'nvim-treesitter'.install { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" }
+
 local cmp = require('cmp')
 
 cmp.setup({
@@ -196,8 +209,6 @@ cmp.setup({
 		end),
 	},
 })
-
--- If you want insert `(` after select function or method item
 
 require("nvim-autopairs").setup()
 require('substitute').setup()
@@ -243,6 +254,8 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-Tab>', ':tabnext<CR>', { noremap = true, silent = true })
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Window navigation
 vim.api.nvim_set_keymap('n', '<C-k>', ':wincmd k<CR>', { silent = true })
