@@ -1,6 +1,6 @@
 vim.pack.add({
 	{ src = 'https://github.com/nvim-tree/nvim-web-devicons' },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        name = "nvim-treesitter", version = 'main' },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -108,65 +108,16 @@ require("catppuccin").setup({
 })
 
 require('lualine').setup {
-	options = {
-		icons_enabled = true,
-		theme = 'auto',
-		component_separators = { left = '', right = '' },
-		section_separators = { left = '', right = '' },
-		disabled_filetypes = {
-			statusline = {},
-			winbar = {},
-		},
-		ignore_focus = {},
-		always_divide_middle = true,
-		always_show_tabline = true,
-		globalstatus = false,
-		refresh = {
-			statusline = 1000,
-			tabline = 1000,
-			winbar = 1000,
-			refresh_time = 16, -- ~60fps
-			events = {
-				'WinEnter',
-				'BufEnter',
-				'BufWritePost',
-				'SessionLoadPost',
-				'FileChangedShellPost',
-				'VimResized',
-				'Filetype',
-				'CursorMoved',
-				'CursorMovedI',
-				'ModeChanged',
-			},
-		}
-	},
-	sections = {
-		-- lualine_a = {'mode'},
-		-- lualine_b = {'branch', 'diff', 'diagnostics'},
-		-- lualine_c = {'filename'},
-		-- lualine_x = {'encoding', 'fileformat', 'filetype'},
-		-- lualine_y = {'progress'},
-		-- lualine_z = {'location'}
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { 'filename' },
-		lualine_x = { 'location' },
-		lualine_y = {},
-		lualine_z = {}
-	},
 	tabline = {
 		lualine_a = { 'mode' },
 		lualine_b = { 'branch', 'diagnostics' },
-		lualine_c = { 'filename' },
-		lualine_x = { 'filetype' },
+		lualine_c = { },
+		lualine_x = {  },
 		lualine_y = { 'buffers' },
 		lualine_z = {  }
 	},
-	winbar = {},
-	inactive_winbar = {},
-	extensions = {}
+	sections = {},
+	theme = 'catppuccin'
 }
 
 require("nvim-surround").setup({})
@@ -177,7 +128,7 @@ require("auto-session").setup {
 }
 require 'nvim-treesitter'.setup()
 
-require 'nvim-treesitter'.install { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" }
+-- require 'nvim-treesitter'.install { "helm", "css", "c", "lua", "vim", "vimdoc", "query", "python", "bash", "nix", "dockerfile", "csharp", "markdown", "json", "typescript" }
 
 local cmp = require('cmp')
 
@@ -242,6 +193,7 @@ vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
 
 -- LSP
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.api.nvim_set_keymap('n', '<leader>tf', ':!typstfmt %<CR>', { silent = true })
 vim.keymap.set('n', 'go', vim.diagnostic.open_float)
 vim.keymap.set('n', 'gd', "<C-]><CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gg', ":LazyGit<CR>", { noremap = true, silent = true })
@@ -253,7 +205,6 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
 -- Buffer navigation
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-Tab>', ':tabnext<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
@@ -263,7 +214,6 @@ vim.api.nvim_set_keymap('n', '<C-j>', ':wincmd j<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<C-h>', ':wincmd h<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':wincmd l<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>c', ':bdelete<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<Space>tn', ':tabnew<CR>', { silent = true })
 
 -- Highlight yanked
 vim.api.nvim_create_autocmd('TextYankPost', {
