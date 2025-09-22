@@ -39,6 +39,13 @@ vim.lsp.enable({
 	'docker_compose_language_service',
 })
 
+vim.lsp.config("tinymist", {
+	settings = {
+		formatterMode = "typstyle"
+		-- formatterMode = "typstfmt"
+	}
+})
+
 vim.lsp.config("nixd", {
 	cmd = { "nixd" },
 	filetypes = { "nix" },
